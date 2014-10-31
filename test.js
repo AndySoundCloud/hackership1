@@ -7,7 +7,6 @@ musicgenres = obj.categories.music;
 
 console.log(musicgenres);
 
-
 var genre = musicgenres[0];
 for (var i = 0; i < musicgenres.length; i++)
 {
