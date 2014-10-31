@@ -5,22 +5,28 @@ var obj = JSON.parse(response);
 
 musicgenres = obj.categories.music;
 
-console.log(musicgenres);
+//console.log(musicgenres);
 
-var genre = musicgenres[0];
+var trendingTracksByGenre = [];  // array to store collections of tracks
+
 for (var i = 0; i < musicgenres.length; i++)
 {
-	if (musicgenres[i] == "techno")
-		genre = musicgenres[i];
-}
+		var genre = musicgenres[i];
+    console.log("Getting "+genre);
 
-console.log("Getting "+genre);
+    response = httpGet("https://api-partners.soundcloud.com/explore/"+genre);
+    var responseOBJ = JSON.parse(response);
+    var collection = responseOBJ.collection;
+
+    trendingTracksByGenre[i] = collection;
+}
 
 response = httpGet("https://api-partners.soundcloud.com/explore/"+genre);
 var responseOBJ = JSON.parse(response);
 
 var collection = responseOBJ.collection;
 
+/*
 console.log("Collection contains: ")
 console.log(collection.length);
 
@@ -30,7 +36,7 @@ for (var i = 0; i < collection.length; i++) {
         console.log(collection[i].title);
         console.log(collection[i].permalink_url);
         }
-
+*/
 
 // Twitter Setup
 var Twit = require('twit')
@@ -43,7 +49,15 @@ var T = new Twit({
 })
 
 // tweet the top track in the genre
-  T.post('statuses/update', { status: collection[0].title + " " + collection[0].permalink_url }, function(err, data, response) {
+var genre =  Math.floor((Math.random() * trendingTracksByGenre.length));
+var tracks = trendingTracksByGenre[genre];
+var index =  Math.floor((Math.random() * tracks.length));
+
+console.log ("Getting track "+index+" from genre "+musicgenres[genre])
+
+//index = 3;
+console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
+  T.post('statuses/update', { status: "Have some "+musicgenres[genre] + "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) {
     console.log(data)
   })
 
