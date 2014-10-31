@@ -81,4 +81,4 @@ function httpGet(theUrl)
 
 
 
-setInterval(tweetRandomTrackfromRandomGenre, 5000, response);
+setInterval(tweetRandomTrackfromRandomGenre, 10000, response);
