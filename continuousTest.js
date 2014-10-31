@@ -30,7 +30,7 @@ console.log ("Getting track "+index+" from genre "+genre)
 
 //index = 3;
 console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
-  T.post('statuses/update', { status: "Have some "+musicgenres[genre] + "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) 
+  T.post('statuses/update', { status: "Have some "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) 
   {
     // log response to console
     // console.log(data)
