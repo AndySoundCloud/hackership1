@@ -18,27 +18,55 @@ var musicgenres = obj.categories.music;
 // select a random genre
 console.log ("Fetched a list of "+musicgenres.length+" genres");
 
-var genre =  musicgenres[Math.floor((Math.random() * musicgenres.length))];
-console.log("Getting genre "+genre);
+var data = "dummy data"
 
-response = httpGet("https://api-partners.soundcloud.com/explore/"+genre);
-var responseOBJ = JSON.parse(response);
-var tracks = responseOBJ.collection;
-var index =  Math.floor((Math.random() * tracks.length));
+var response = null;
+ 
+ /* 
+while (true)
+{
+  setTimeout(tweetRandomTrackfromRandomGenre(response), 10000);
 
-console.log ("Getting track "+index+" from genre "+genre)
+  // log response to console
+  //console.log("response="+response);
+      
+}
+*/
+//var timer = setInterval(tweetRandomTrackfromRandomGenre(response), 5000);
 
-//index = 3;
-console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
-  T.post('statuses/update', { status: "Have some "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) 
-  {
-    // log response to console
-    // console.log(data)
-    if (data == null)
-      console.log ("Twitter doesn't like this");
-    else
-      console.log ("Tweeted like a Pro");
-  })
+/*
+function myTimeoutFunction()
+{
+    var response;
+    tweetRandomTrackfromRandomGenre(response);
+    setTimeout(myTimeoutFunction, 5000);
+}
+
+
+myTimeoutFunction();
+*/
+
+function tweetRandomTrackfromRandomGenre(responseCode)
+{
+  var genre =  musicgenres[Math.floor((Math.random() * musicgenres.length))];
+  console.log("Getting genre "+genre);
+  response = httpGet("https://api-partners.soundcloud.com/explore/"+genre);
+  var responseOBJ = JSON.parse(response);
+  var tracks = responseOBJ.collection;
+  var index =  Math.floor((Math.random() * tracks.length));
+
+  //console.log ("Getting track "+index+" from genre "+genre)
+  console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
+    T.post('statuses/update', { status: "Have some "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) 
+    {
+      if (data == null)
+        console.log ("Twitter doesn't like this");
+      else
+        console.log ("Tweeted like a Pro");
+    })
+  }
+
+
 
 
 function httpGet(theUrl)
@@ -50,3 +78,7 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+
+
+
+setInterval(tweetRandomTrackfromRandomGenre, 5000, response);
