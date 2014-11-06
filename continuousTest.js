@@ -22,30 +22,6 @@ var data = "dummy data"
 
 var response = null;
  
- /* 
-while (true)
-{
-  setTimeout(tweetRandomTrackfromRandomGenre(response), 10000);
-
-  // log response to console
-  //console.log("response="+response);
-      
-}
-*/
-//var timer = setInterval(tweetRandomTrackfromRandomGenre(response), 5000);
-
-/*
-function myTimeoutFunction()
-{
-    var response;
-    tweetRandomTrackfromRandomGenre(response);
-    setTimeout(myTimeoutFunction, 5000);
-}
-
-
-myTimeoutFunction();
-*/
-
 function tweetRandomTrackfromRandomGenre(responseCode)
 {
   var genre =  musicgenres[Math.floor((Math.random() * musicgenres.length))];
@@ -66,9 +42,6 @@ function tweetRandomTrackfromRandomGenre(responseCode)
     })
   }
 
-
-
-
 function httpGet(theUrl)
 {
     var xmlHttp = null;
@@ -80,5 +53,14 @@ function httpGet(theUrl)
 }
 
 
+// The infinite loop...
+setInterval(tweetRandomTrackfromRandomGenre, 60000, response);  // post a new track every 1min
 
-setInterval(tweetRandomTrackfromRandomGenre, 10000, response);
+// Todo: fix category names to make them look nice e.g. drumbass -> Drum & Bass
+// Todo: avoid duplicates
+
+
+
+
+
+
