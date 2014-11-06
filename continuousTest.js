@@ -33,7 +33,7 @@ function tweetRandomTrackfromRandomGenre(responseCode)
 
   //console.log ("Getting track "+index+" from genre "+genre)
   console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
-    T.post('statuses/update', { status: "Have some "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url }, function(err, data, response) 
+    T.post('statuses/update', { status: "Have some "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url +"?ref=HST" }, function(err, data, response) 
     {
       if (data == null)
         console.log ("Twitter doesn't like this");
