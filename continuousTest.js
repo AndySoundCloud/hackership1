@@ -54,7 +54,7 @@ function httpGet(theUrl)
 
 
 // The infinite loop...
-setInterval(tweetRandomTrackfromRandomGenre, 60000 * 15, response);  // post a new track every 15min
+setInterval(tweetRandomTrackfromRandomGenre, 80000, response);  // post a new track every 15min
 
 // Todo: fix category names to make them look nice e.g. drumbass -> Drum & Bass
 // Todo: avoid duplicates
