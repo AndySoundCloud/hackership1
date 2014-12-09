@@ -33,7 +33,7 @@ function tweetRandomTrackfromRandomGenre(responseCode)
 
   //console.log ("Getting track "+index+" from genre "+genre)
   console.log ("Attempting to post "+ tracks[index].title +" to Twitter account");
-    T.post('statuses/update', { status: "Apreciar "+genre+ "! " + tracks[index].title + " " + tracks[index].permalink_url +"?ref=HST" }, function(err, data, response) 
+    T.post('statuses/update', { status: "Bom! " + tracks[index].title + " " + tracks[index].permalink_url +"?ref=HST" }, function(err, data, response) 
     {
       if (data == null)
         console.log ("Twitter doesn't like this");
@@ -54,7 +54,7 @@ function httpGet(theUrl)
 
 
 // The infinite loop...
-setInterval(tweetRandomTrackfromRandomGenre, 80000, response);  // post a new track every 15min
+setInterval(tweetRandomTrackfromRandomGenre, 360 * 1000, response);  // post a new track every 15min
 
 // Todo: fix category names to make them look nice e.g. drumbass -> Drum & Bass
 // Todo: avoid duplicates
